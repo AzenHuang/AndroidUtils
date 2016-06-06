@@ -1,6 +1,7 @@
 package com.github.azenhuang.util;
 
-import com.litesuits.common.assist.Check;
+
+import android.text.TextUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -98,13 +99,13 @@ public class CpuUtils {
      * Get CPU name.
      */
     public static String getCpuName() {
-        if (!Check.isEmpty(CPU_NAME)) {
+        if (!TextUtils.isEmpty(CPU_NAME)) {
             return CPU_NAME;
         }
+        BufferedReader bufferedReader = null;
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(CPU_INFO_PATH), 8192);
+            bufferedReader = new BufferedReader(new FileReader(CPU_INFO_PATH), 8192);
             String line = bufferedReader.readLine();
-            bufferedReader.close();
             String[] array = line.split(":\\s+", 2);
             if (array.length > 1) {
                 if (Log.isPrint) {
@@ -114,6 +115,8 @@ public class CpuUtils {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(bufferedReader);
         }
         return CPU_NAME;
     }
