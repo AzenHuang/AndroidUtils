@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -57,6 +58,18 @@ public class FileUtils {
     private FileUtils() {
         throw new AssertionError();
     }
+
+    /**
+     * read file
+     *
+     * @param filePath
+     * @return if file not exist, return null, else return content of file
+     * @throws RuntimeException if an error occurs while operator BufferedReader
+     */
+    public static StringBuilder readFile(String filePath) throws IOException {
+        return readFile(filePath, Charset.defaultCharset().name());
+    }
+
 
     /**
      * read file

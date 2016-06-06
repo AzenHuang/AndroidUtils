@@ -12,9 +12,8 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.widget.Toast;
-
-import com.litesuits.common.assist.Check;
 
 import java.io.File;
 import java.util.List;
@@ -187,9 +186,9 @@ public class PackageUtil {
      * 获取已安装的全部应用信息
      */
     public static boolean isInsatalled(Context context, String pkg) {
-        if (!Check.isEmpty(pkg)) {
+        if (!TextUtils.isEmpty(pkg)) {
             List<PackageInfo> list = getInsatalledPackages(context);
-            if (!Check.isEmpty(list)) {
+            if (!CollectionUtils.isEmpty(list)) {
                 for (PackageInfo pi : list) {
                     if (pkg.equalsIgnoreCase(pi.packageName)) {
                         return true;

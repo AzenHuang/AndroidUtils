@@ -13,8 +13,6 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.github.azenhuang.common.utils.ShellUtils.CommandResult;
-
 import java.io.File;
 import java.util.List;
 
@@ -57,7 +55,7 @@ public class PackageUtils {
     }
 
     /**
-     * App installation location settings values, same to {@link #PackageHelper}
+     * App installation location settings values
      */
     public static final int APP_INSTALL_AUTO     = 0;
     public static final int APP_INSTALL_INTERNAL = 1;
@@ -152,7 +150,7 @@ public class PackageUtils {
          **/
         StringBuilder command = new StringBuilder().append("LD_LIBRARY_PATH=/vendor/lib:/system/lib pm install ")
                 .append(pmParams == null ? "" : pmParams).append(" ").append(filePath.replace(" ", "\\ "));
-        CommandResult commandResult = ShellUtils.execCommand(command.toString(), !isSystemApplication(context), true);
+        ShellUtils.CommandResult commandResult = ShellUtils.execCommand(command.toString(), !isSystemApplication(context), true);
         if (commandResult.successMsg != null
                 && (commandResult.successMsg.contains("Success") || commandResult.successMsg.contains("success"))) {
             return INSTALL_SUCCEEDED;
@@ -351,7 +349,7 @@ public class PackageUtils {
          **/
         StringBuilder command = new StringBuilder().append("LD_LIBRARY_PATH=/vendor/lib:/system/lib pm uninstall")
                 .append(isKeepData ? " -k " : " ").append(packageName.replace(" ", "\\ "));
-        CommandResult commandResult = ShellUtils.execCommand(command.toString(), !isSystemApplication(context), true);
+        ShellUtils.CommandResult commandResult = ShellUtils.execCommand(command.toString(), !isSystemApplication(context), true);
         if (commandResult.successMsg != null
                 && (commandResult.successMsg.contains("Success") || commandResult.successMsg.contains("success"))) {
             return DELETE_SUCCEEDED;
@@ -483,10 +481,9 @@ public class PackageUtils {
      * can be set by System Menu Setting->Storage->Prefered install location
      * 
      * @return
-     * @see {@link IPackageManager#getInstallLocation()}
      */
     public static int getInstallLocation() {
-        CommandResult commandResult = ShellUtils.execCommand(
+        ShellUtils.CommandResult commandResult = ShellUtils.execCommand(
                 "LD_LIBRARY_PATH=/vendor/lib:/system/lib pm get-install-location", false, true);
         if (commandResult.result == 0 && commandResult.successMsg != null && commandResult.successMsg.length() > 0) {
             try {
@@ -639,7 +636,6 @@ public class PackageUtils {
     /**
      * Installation return code<br/>
      * the new package failed because it has specified that it is a test-only package and the caller has not supplied
-     * the {@link #INSTALL_ALLOW_TEST} flag.
      */
     public static final int INSTALL_FAILED_TEST_ONLY                       = -15;
 
