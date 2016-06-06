@@ -39,7 +39,7 @@ public class SerializeUtils {
         } catch (IOException e) {
             throw new RuntimeException("IOException occurred. ", e);
         } finally {
-            IOUtils.close(in);
+            IOUtils.closeQuietly(in);
         }
     }
 
@@ -61,7 +61,7 @@ public class SerializeUtils {
         } catch (IOException e) {
             throw new RuntimeException("IOException occurred. ", e);
         } finally {
-            IOUtils.close(out);
+            IOUtils.closeQuietly(out);
         }
     }
 
