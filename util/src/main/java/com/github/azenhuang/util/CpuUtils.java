@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 /**
  * Get CPU info.
  *
- * @author MaTianyu
  * @date 2015-04-18
  */
 public class CpuUtils {
