@@ -259,4 +259,10 @@ public class ViewUtils {
         }
         return descendedViewList;
     }
+
+    public static void removeAllViews(ViewGroup viewGroup) {
+        if (viewGroup.getChildCount() > 0) {
+            viewGroup.removeAllViews();
+        }
+    }
 }

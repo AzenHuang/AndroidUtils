@@ -40,8 +40,8 @@ public class CpuUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (sb!=null &&Log.isPrint) {
-            Log.i(TAG, "_______  CPU :   \n" + sb.toString());
+        if (sb != null && LogUtils.isPrint) {
+            LogUtils.i(TAG, "_______  CPU :   \n" + sb.toString());
         }
         return sb==null ? null : sb.toString();
     }
@@ -107,8 +107,8 @@ public class CpuUtils {
             String line = bufferedReader.readLine();
             String[] array = line.split(":\\s+", 2);
             if (array.length > 1) {
-                if (Log.isPrint) {
-                    Log.i(TAG, array[1]);
+                if (LogUtils.isPrint) {
+                    LogUtils.i(TAG, array[1]);
                 }
                 CPU_NAME = array[1];
             }
@@ -178,8 +178,8 @@ public class CpuUtils {
             }
             in.close();
             process.destroy();
-            if (Log.isPrint) {
-                Log.i(TAG, "CMD: " + sb.toString());
+            if (LogUtils.isPrint) {
+                LogUtils.i(TAG, "CMD: " + sb.toString());
             }
             return sb.toString();
         } catch (IOException ex) {

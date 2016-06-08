@@ -36,7 +36,7 @@ public class TelephoneUtil {
     public static String getIMSI(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String IMSI = telephonyManager.getSubscriberId();
-        Log.i(TAG, " IMSI：" + IMSI);
+        LogUtils.i(TAG, " IMSI：" + IMSI);
         return IMSI;
     }
 
@@ -52,7 +52,7 @@ public class TelephoneUtil {
     public static String getIMEI(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String IMEI = telephonyManager.getDeviceId();
-        Log.i(TAG, " IMEI：" + IMEI);
+        LogUtils.i(TAG, " IMEI：" + IMEI);
         return IMEI;
     }
 
@@ -95,7 +95,7 @@ public class TelephoneUtil {
         sb.append("\nSubscriberId         :").append(tm.getSubscriberId());
         sb.append("\nVoiceMailNumber      :").append(tm.getVoiceMailNumber());
 
-        Log.i(TAG, sb.toString());
+        LogUtils.i(TAG, sb.toString());
         return sb.toString();
     }
 
@@ -166,7 +166,7 @@ public class TelephoneUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.i(TAG, "MTK: " + teleInfo);
+        LogUtils.i(TAG, "MTK: " + teleInfo);
         return teleInfo;
     }
 
@@ -208,7 +208,7 @@ public class TelephoneUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.i(TAG, "MTK2: " + teleInfo);
+        LogUtils.i(TAG, "MTK2: " + teleInfo);
         return teleInfo;
     }
 
@@ -245,7 +245,7 @@ public class TelephoneUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.i(TAG, "Qualcomm: " + teleInfo);
+        LogUtils.i(TAG, "Qualcomm: " + teleInfo);
         return teleInfo;
     }
 
@@ -282,7 +282,7 @@ public class TelephoneUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.i(TAG, "Spreadtrum: " + teleInfo);
+        LogUtils.i(TAG, "Spreadtrum: " + teleInfo);
         return teleInfo;
     }
 }

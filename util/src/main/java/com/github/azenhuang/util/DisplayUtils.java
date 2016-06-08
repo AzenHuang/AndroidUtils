@@ -46,7 +46,7 @@ public class DisplayUtils {
      */
     public static DisplayMetrics printDisplayInfo(Context context) {
         DisplayMetrics dm = getDisplayMetrics(context);
-        if (Log.isPrint) {
+        if (LogUtils.isPrint) {
             StringBuilder sb = new StringBuilder();
             sb.append("_______  显示信息:  ");
             sb.append("\ndensity         :").append(dm.density);
@@ -56,7 +56,7 @@ public class DisplayUtils {
             sb.append("\nscaledDensity   :").append(dm.scaledDensity);
             sb.append("\nxdpi            :").append(dm.xdpi);
             sb.append("\nydpi            :").append(dm.ydpi);
-            Log.i(TAG, sb.toString());
+            LogUtils.i(TAG, sb.toString());
         }
         return dm;
     }

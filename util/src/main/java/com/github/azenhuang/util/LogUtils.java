@@ -21,15 +21,16 @@ package com.github.azenhuang.util;
  * @author MaTianyu
  *         2014-1-1下午4:05:39
  */
-public final class Log {
+public final class LogUtils {
 
     /**
      * isPrint: print switch, true will print. false not print
      */
     public static boolean isPrint = true;
-    private static String defaultTag = "Log";
+    private static String defaultTag = "LogUtils";
 
-    private Log() {}
+    private LogUtils() {
+    }
 
     public static void setTag(String tag) {
         defaultTag = tag;
@@ -44,7 +45,7 @@ public final class Log {
     }
 
     /**
-     * ******************** Log **************************
+     * ******************** LogUtils **************************
      */
     public static int v(String tag, String msg) {
         return isPrint && msg != null ? android.util.Log.v(tag, msg) : -1;
@@ -67,7 +68,7 @@ public final class Log {
     }
 
     /**
-     * ******************** Log with object list **************************
+     * ******************** LogUtils with object list **************************
      */
     public static int v(String tag, Object... msg) {
         return isPrint ? android.util.Log.v(tag, getLogMessage(msg)) : -1;
@@ -103,7 +104,7 @@ public final class Log {
     }
 
     /**
-     * ******************** Log with Throwable **************************
+     * ******************** LogUtils with Throwable **************************
      */
     public static int v(String tag, String msg, Throwable tr) {
         return isPrint && msg != null ? android.util.Log.v(tag, msg, tr) : -1;

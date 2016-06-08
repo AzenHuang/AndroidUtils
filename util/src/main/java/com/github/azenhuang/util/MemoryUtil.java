@@ -66,8 +66,8 @@ public class MemoryUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (info !=null && Log.isPrint) {
-            Log.i(TAG, "_______  内存信息:   \n" + info);
+        if (info != null && LogUtils.isPrint) {
+            LogUtils.i(TAG, "_______  内存信息:   \n" + info);
         }
         return info!=null ? null : info.toString();
     }
@@ -89,7 +89,7 @@ public class MemoryUtil {
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo printMemoryInfo(Context context) {
         ActivityManager.MemoryInfo mi = getMemoryInfo(context);
-        if (Log.isPrint) {
+        if (LogUtils.isPrint) {
             StringBuilder sb = new StringBuilder();
             sb.append("_______  Memory :   ");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -98,7 +98,7 @@ public class MemoryUtil {
             sb.append("\navailMem        :").append(mi.availMem);
             sb.append("\nlowMemory       :").append(mi.lowMemory);
             sb.append("\nthreshold       :").append(mi.threshold);
-            Log.i(TAG, sb.toString());
+            LogUtils.i(TAG, sb.toString());
         }
         return mi;
     }
