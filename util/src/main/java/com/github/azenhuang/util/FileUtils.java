@@ -226,8 +226,8 @@ public class FileUtils {
                     isFirst = false;
                 }else {
                     fileWriter.write(separator);
-                    fileWriter.write(line);
                 }
+                fileWriter.write(line);
             }
             return true;
         } catch (IOException e) {
