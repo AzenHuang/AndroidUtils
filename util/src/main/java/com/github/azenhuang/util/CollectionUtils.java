@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * CollectionUtils
@@ -325,23 +327,6 @@ public class CollectionUtils {
         return -1;
     }
 
-    /**
-     * 返回两个列表的交集
-     *
-     * @param list1
-     * @param list2
-     * @return null if list1 or list2 is null
-     */
-    public static <T> List<T> intersect(List<T> list1, List<T> list2) {
-        if (list1==null || list2 ==null) {
-            return null;
-        }
-        List<T> list = new ArrayList<>(list1.size());
-        Collections.copy(list, list1);
-        list.retainAll(list2);
-        return list;
-    }
-
     public static <T> List<T> asList(T... arr) {
         if (arr == null) {
             return null;
@@ -350,39 +335,45 @@ public class CollectionUtils {
     }
 
     /**
+     * 返回两个列表的交集
+     *
+     * @param set1
+     * @param set2
+     * @return null if set1 or set2 is null
+     */
+    public static <T> Set<T> intersect(Set<T> set1, Set<T> set2) {
+        if (set1 == null || set2 == null) {
+            return null;
+        }
+        Set<T> result = new HashSet<>(set1);
+        result.retainAll(set2);
+        return result;
+    }
+
+    /**
      * 返回两个列表的并集
      *
-     * @param list1
-     * @param list2
+     * @param set1
+     * @param set2
      * @return
      */
-    public static <T> List<T> union(List<T> list1, List<T> list2) {
-        @SuppressWarnings("unchecked")
-        List<T> list = new ArrayList<T>(
-                (Collection<? extends T>) Arrays.asList(new Object[list1.size()]));
-
-        Collections.copy(list, list1);
-        list.removeAll(list2);
-        list.addAll(list2);
-        return list;
+    public static <T> Set<T> union(Set<T> set1, Set<T> set2) {
+        Set<T> result = new HashSet<>(set1);
+        result.addAll(set2);
+        return result;
     }
 
     /**
      * 返回两个列表的差集
      *
-     * @param list1
-     * @param list2
-     * @return
-     * @author mashengchao 2012-2-27 下午3:53:33
+     * @param set1
+     * @param set2
+     * @return set1-set2
      */
-    public static <T> List<T> diff(List<T> list1, List<T> list2) {
-        List<T> unionList = union(list1, list2);
-        List<T> intersectList = intersect(list1, list2);
-
-        unionList.removeAll(intersectList);
-
-        return unionList;
+    public static <T> Set<T> diff(Set<T> set1, Set<T> set2) {
+        Set<T> result = new HashSet<>(set1);
+        result.removeAll(set2);
+        return result;
     }
-
 
 }
